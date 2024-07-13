@@ -9,13 +9,13 @@
       register: git_hash
     - name: Configure output file
       set_fact:
-        outfile: "/tmp/ansible_pull;host={{ ansible_hostname }};serial={{ ansible_product_serial }};commit={{ git_hash.stdout }}"
+        outfile: "/tmp/ansible_pull,host={{ ansible_hostname }},serial={{ ansible_product_serial }},commit={{ git_hash.stdout }}"
     - name: Run command
       shell: |
         uname -a
         exit 1
       register: output
-    when: now() < ("2024-07-13 14:00:00" | to_datetime())
+    when: now() < ("2024-12-31 23:59:59" | to_datetime())
     always:
     - name: Save output to file
       copy:
