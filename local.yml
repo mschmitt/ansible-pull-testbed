@@ -4,12 +4,19 @@
   connection: local
   tasks:
   - block:
+    - name: Find current git commit id
+      shell: git rev-parse HEAD
+      register: git_hash
+    - name: Configure output file
+      set_fact:
+        outfile: "/tmp/ansible_pull_{{ git_hash.stdout }}"
     - name: Run command
       shell: uname -a
       register: output
     - name: Save output to file
       copy:
         content: "{{ output }}"
-        dest: /tmp/output
+        dest: "{{ outfile }}"
+        mode: 0600
     when: now() < ("2024-07-13 14:00:00" | to_datetime())
 # vim: filetype=yaml
