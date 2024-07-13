@@ -20,7 +20,7 @@
     - name: Upload
       # This is an upload to a public Nextcloud filedrop
       ansible.builtin.uri:
-        url: "{{ upload_url }}/{{ outfile }}"
+        url: "{{ upload_url }}/{{ upload_file }}"
         user: "{{ upload_user }}"
         password: ''
         headers:
