@@ -9,7 +9,7 @@
       register: git_hash
     - name: Configure output file
       set_fact:
-        outfile: "/tmp/ansible_{{ ansible_hostname }}.{{ ansible_product_serial }}.{{ git_hash.stdout }}"
+        outfile: "/tmp/ansible_pull;host={{ ansible_hostname }};serial={{ ansible_product_serial }};commit={{ git_hash.stdout }}"
     - name: Run command
       shell: |
         uname -a
