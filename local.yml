@@ -7,9 +7,9 @@
     - name: Find current git commit id
       shell: git rev-parse HEAD
       register: git_hash
-    - name: Configure output file
+    - name: Configure upload filename
       set_fact:
-        outfile: "/tmp/ansible_pull,host={{ ansible_hostname }},serial={{ ansible_product_serial }},commit={{ git_hash.stdout }}"
+        upload_file: "ansible_pull,host={{ ansible_hostname }},serial={{ ansible_product_serial }},commit={{ git_hash.stdout }}.json"
     - name: Run command
       shell: |
         dmesg -T
@@ -17,9 +17,17 @@
       register: output
     when: now() < ("2024-12-31 23:59:59" | to_datetime())
     always:
-    - name: Save output to file
-      copy:
-        content: "{{ output }}"
-        dest: "{{ outfile }}"
-        mode: 0600
+    - name: Upload
+      # This is an upload to a public Nextcloud filedrop
+      ansible.builtin.uri:
+        url: "{{ upload_url }}/{{ outfile }}"
+        user: "{{ upload_user }}"
+        password: ''
+        headers:
+          X-Requested-With: XMLHttpRequest
+        method: PUT
+        status_code: 201 # Webdav: 201 Created
+        body: "{{ output }}"
+        body_format: json
+
 # vim: filetype=yaml
