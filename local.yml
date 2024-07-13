@@ -12,7 +12,7 @@
         outfile: "/tmp/ansible_pull,host={{ ansible_hostname }},serial={{ ansible_product_serial }},commit={{ git_hash.stdout }}"
     - name: Run command
       shell: |
-        uname -a
+        dmesg -T
         exit 1
       register: output
     when: now() < ("2024-12-31 23:59:59" | to_datetime())
