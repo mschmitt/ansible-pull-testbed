@@ -1,5 +1,0 @@
----
-# This is an upload to a public Nextcloud filedrop
-upload_user: 'Random String from the URL'
-upload_url: https://nextcloud.example.com/public.php/webdav
-

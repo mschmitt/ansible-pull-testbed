@@ -22,5 +22,7 @@ ansible-pull \
         --verify-commit \
         --url https://github.com/mschmitt/ansible-pull-testbed \
         --limit localhost \
+        --extra-vars upload_user=xxx \
+        --extra-vars upload_url=https://nextcloud.example.com/public.php/webdav \
         --only-if-changed
 ```
