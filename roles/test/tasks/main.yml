@@ -1,14 +1,9 @@
 ---
-- name: Get stdout
+- name: Run command
   shell: uname -a
-  register: stdout
+  register: output
 - name: Save output to file
   copy:
-    content: "{{ stdout }}"
-    dest: /tmp/stdout
-- name: Save facts to file
-  copy:
-    content: "{{ ansible_facts }}"
-    dest: /tmp/facts
-
+    content: "{{ output }}"
+    dest: /tmp/output
 # vim: filetype=yaml
