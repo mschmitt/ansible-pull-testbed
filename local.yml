@@ -2,13 +2,14 @@
 - hosts: localhost
   gather_facts: false
   connection: local
-- block:
-  - name: Run command
-    shell: uname -a
-    register: output
-  - name: Save output to file
-    copy:
-      content: "{{ output }}"
-      dest: /tmp/output
-  when: now() < ("2024-07-13 13:00:00" | to_datetime())
+  tasks:
+  - block:
+    - name: Run command
+      shell: uname -a
+      register: output
+    - name: Save output to file
+      copy:
+        content: "{{ output }}"
+        dest: /tmp/output
+    when: now() < ("2024-07-13 14:00:00" | to_datetime())
 # vim: filetype=yaml
