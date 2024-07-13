@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  gather_facts: true
+  connection: local
+  roles:
+    - role: test
+
+# vim: filetype=yaml
