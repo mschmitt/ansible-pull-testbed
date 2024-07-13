@@ -1,9 +1,0 @@
----
-- name: Run command
-  shell: uname -a
-  register: output
-- name: Save output to file
-  copy:
-    content: "{{ output }}"
-    dest: /tmp/output
-# vim: filetype=yaml
