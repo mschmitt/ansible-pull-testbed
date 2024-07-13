@@ -1,12 +1,14 @@
 ---
-- name: Demo 1
+- name: Get stdout
   shell: uname -a
   register: stdout
-- name: Demo 2
-  debug:
-    msg: "{{ stdout }}"
-- name: Demo 3
-  debug:
-    msg: "{{ ansible_facts }}"
+- name: Save output to file
+  copy:
+    content: "{{ stdout }}"
+    dest: /tmp/stdout
+- name: Save facts to file
+  copy:
+    content: "{{ ansible_facts }}"
+    dest: /tmp/facts
 
 # vim: filetype=yaml
