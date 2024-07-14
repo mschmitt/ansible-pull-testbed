@@ -4,7 +4,13 @@
   register: git_hash
 - name: Configure upload filename
   set_fact:
-    upload_file: "ansible_pull,host={{ ansible_hostname }},serial={{ ansible_product_serial }},commit={{ git_hash.stdout }}.json"
+    upload_file: "commit={{ git_hash.stdout }},state={{ result.failed | ternary('FAILURE', 'SUCCESS') }},host={{ ansible_hostname }},serial={{ ansible_product_serial }}.txt"
+- name: "Debug: result object"
+  debug:
+    msg: "{{ result }}"
+- name: "Debug: filename"
+  debug:
+    msg: "{{ upload_file }}"
 - name: Upload
   # This is an upload to a public Nextcloud filedrop
   uri:
@@ -15,7 +21,7 @@
       X-Requested-With: XMLHttpRequest
     method: PUT
     status_code: 201 # Webdav: 201 Created
-    body: "{{ result }}"
-    body_format: json
+    body: "{{ result.stdout | default(result.msg) }}"
+    body_format: raw
 
 # vim: filetype=yaml
