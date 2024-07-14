@@ -6,13 +6,11 @@
   - block:
     # Fixme: Allow multiple tasks and merging of multiple register objects
     - name: Run command
+      register: return_data
       shell: |
         dmesg -T
-      register: output
-    - name: Run another command
-      shell: |
         lsmod
-      register: output2
+        true
     when: now() < ("2024-12-31 23:59:59" | to_datetime())
     always:
     # Post-execution reporting
@@ -32,7 +30,7 @@
           X-Requested-With: XMLHttpRequest
         method: PUT
         status_code: 201 # Webdav: 201 Created
-        body: "{{ output }}"
+        body: "{{ return_data }}"
         body_format: json
 
 # vim: filetype=yaml
