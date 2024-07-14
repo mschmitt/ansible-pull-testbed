@@ -4,12 +4,18 @@
   connection: local
   tasks:
   - block:
+    # Fixme: Allow multiple tasks and merging of multiple register objects
     - name: Run command
       shell: |
         dmesg -T
       register: output
+    - name: Run another command
+      shell: |
+        lsmod
+      register: output2
     when: now() < ("2024-12-31 23:59:59" | to_datetime())
     always:
+    # Post-execution reporting
     - name: Find current git commit id
       shell: git rev-parse HEAD
       register: git_hash
