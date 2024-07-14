@@ -5,12 +5,9 @@
   tasks:
   - block:
     # Fixme: Allow multiple tasks and merging of multiple result objects
-    - name: Run command
+    - name: Run remote.sh
       register: result
-      shell: |
-        dmesg -T
-        lsmod
-        true
+      script: remote.sh
     when: now() < ("2024-12-31 23:59:59" | to_datetime())
     always:
     - include_role:

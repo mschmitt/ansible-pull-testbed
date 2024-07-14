@@ -1,3 +1,6 @@
+---
 all:
   hosts:
     localhost:
+
+# vim: filetype=yaml
