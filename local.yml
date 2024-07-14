@@ -13,7 +13,6 @@
     - name: Run command
       shell: |
         dmesg -T
-        exit 1
       register: output
     when: now() < ("2024-12-31 23:59:59" | to_datetime())
     always:
