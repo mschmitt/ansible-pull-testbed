@@ -4,8 +4,7 @@
   connection: local
   tasks:
   - block:
-    # Fixme: Allow multiple tasks and merging of multiple result objects
-    - name: Run remote.sh
+    - name: Run local.sh
       register: result
       script: local.sh
     when: now() < ("2024-12-31 23:59:59" | to_datetime())
