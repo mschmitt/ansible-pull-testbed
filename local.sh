@@ -13,8 +13,7 @@ trap errorexit ERR
 
 printf -- "--- Start output\n"
 
-dmesg || printf "dmesg failed\n"
-lsmod || printf "lsmod failed\n"
-false || printf "oops, false failed\n"
+printf -- "--- This should be an Ubuntu system:\n"
+cat /etc/os-release
 
 printf -- "--- End output\n"
