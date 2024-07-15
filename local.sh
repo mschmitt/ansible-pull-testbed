@@ -11,10 +11,10 @@ function errorexit() {
 }
 trap errorexit ERR
 
-printf "--- Start output"
+printf -- "--- Start output\n"
 
 dmesg || printf "dmesg failed\n"
 lsmod || printf "lsmod failed\n"
 false || printf "oops, false failed\n"
 
-printf "--- End output"
+printf -- "--- End output\n"
