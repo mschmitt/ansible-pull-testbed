@@ -1,5 +1,7 @@
 # ansible-pull-testbed
 
+- Clients will checkout a branch, see branches.
+
 ## Notes to self:
 
 ```
@@ -28,6 +30,7 @@ source "${me_dir}"/config
 ansible-pull \
         --verify-commit \
         --url https://github.com/mschmitt/ansible-pull-testbed \
+        --checkout jammy-dev \
         --limit localhost \
         --extra-vars upload_user="${upload_user}" \
         --extra-vars upload_url="${upload_url}" \
