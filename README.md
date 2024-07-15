@@ -11,6 +11,7 @@ git config user.signingKey 1949CE6E01C3C6A5FAD9620079F95F49DF236BA4
 
 - [x] Use dedicated GNUPGHOME
 - [ ] Maybe use form-multipart instead of encoding things into filename (good enough for Webdav prototype)
+- [ ] Actual deployments should probably have the submission role packaged and deployed with the ansible-pull wrapper
 
 ## ansible-pull.sh
 
@@ -30,7 +31,7 @@ source "${me_dir}"/config
 ansible-pull \
         --verify-commit \
         --url https://github.com/mschmitt/ansible-pull-testbed \
-        --checkout jammy-dev \
+        --checkout deb12-dev \
         --limit localhost \
         --extra-vars upload_user="${upload_user}" \
         --extra-vars upload_url="${upload_url}" \
