@@ -20,7 +20,7 @@ me_dir="$(dirname "${me_path}")"
 
 GNUPGHOME="${me_dir}"/gnupghome/
 export GNUPGHOME
-gpg --import "${me_dir}"/keys/*
+gpg --import "${me_dir}"/trustedkeys/*
 source "${me_dir}"/config
 
 # - Uses implicit ansible.cfg from the checkout
