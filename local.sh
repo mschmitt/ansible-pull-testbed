@@ -11,6 +11,6 @@ function errorexit() {
 }
 trap errorexit ERR
 
-dmesg
-lsmod
-
+dmesg || printf "dmesg failed\n"
+lsmod || printf "lsmod failed\n"
+lsmod || printf "oops, false failed\n"
