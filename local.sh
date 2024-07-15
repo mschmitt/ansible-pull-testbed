@@ -13,7 +13,7 @@ trap errorexit ERR
 
 printf -- "--- Start output\n"
 
-printf -- "--- This should be an Ubuntu system:\n"
+printf -- "--- This should be a Debian system:\n"
 cat /etc/os-release
 
 printf -- "--- End output\n"
