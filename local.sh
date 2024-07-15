@@ -13,7 +13,8 @@ trap errorexit ERR
 
 printf -- "--- Start output\n"
 
-printf -- "--- This should be an Ubuntu system:\n"
-cat /etc/os-release
+DEBIAN_FRONTEND=noninteractive
+apt-get -y update
+apt-get -y dist-upgrade
 
 printf -- "--- End output\n"
