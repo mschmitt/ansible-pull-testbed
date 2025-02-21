@@ -13,7 +13,10 @@ trap errorexit ERR
 
 printf -- "--- Start output\n"
 
-printf -- "--- This should be a Debian system:\n"
-cat /etc/os-release
+printf -- "--- apt-get update:\n"
+apt-get update
+
+printf -- "--- apt-get dist-upgrade:\n"
+DEBIAN_FRONTEND=noninteractive apt-get -y dist-upgrade
 
 printf -- "--- End output\n"
