@@ -24,17 +24,18 @@ me_dir="$(dirname "${me_path}")"
 GNUPGHOME="${me_dir}"/gnupghome/
 export GNUPGHOME
 gpg --import "${me_dir}"/trustedkeys/*
-source "${me_dir}"/config
-
-export ANSIBLE_STDOUT_CALLBACK=json
-export ANSIBLE_LOG_PATH=/tmp/ansible-pull.txt
+source "${me_dir}"/ansible-pull.cfg
 
 # - Uses implicit ansible.cfg from the checkout
 # - upload_user/upload_url hidden for demonstration on public repository
+rm -f /tmp/ansible-pull.txt
 ansible-pull \
         --url https://github.com/mschmitt/ansible-pull-testbed \
         --checkout deb12-dev \
         --verify-commit \
         --limit localhost \
-        --only-if-changed
+        --extra-vars upload_user="${upload_user}" \
+        --extra-vars upload_url="${upload_url}" \
+        --only-if-changed \
+        play-local.yml lib/play-upload-results.yml
 ```
