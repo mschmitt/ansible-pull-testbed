@@ -17,11 +17,8 @@
       shell: iptables -L; ip6tables -L
 
     rescue:
-    - name: Mark play as failed
+    - name: Mark play as failed if any task fails
       set_fact:
-        result: 'FAILURE'
-  - name: Mark play as success
-    set_fact:
-      result: 'SUCCESS'
+        ansible-pull-failed: true
 
 # vim: filetype=yaml
