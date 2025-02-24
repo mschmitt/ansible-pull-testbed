@@ -26,6 +26,9 @@ export GNUPGHOME
 gpg --import "${me_dir}"/trustedkeys/*
 source "${me_dir}"/config
 
+export ANSIBLE_STDOUT_CALLBACK=json
+export ANSIBLE_LOG_PATH=/tmp/ansible-pull.txt
+
 # - Uses implicit ansible.cfg from the checkout
 # - upload_user/upload_url hidden for demonstration on public repository
 ansible-pull \
@@ -33,7 +36,5 @@ ansible-pull \
         --checkout deb12-dev \
         --verify-commit \
         --limit localhost \
-        --extra-vars upload_user="${upload_user}" \
-        --extra-vars upload_url="${upload_url}" \
         --only-if-changed
 ```
