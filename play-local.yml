@@ -15,8 +15,13 @@
         enabled: false
     - name: Some thing that might produce interesting output
       shell: iptables -L; ip6tables -L
+
     rescue:
-    - set_fact:
-        success: 'FAILED'
+    - name: Mark play as failed
+      set_fact:
+        result: 'FAILURE'
+  - name: Mark play as success
+    set_fact:
+      result: 'SUCCESS'
 
 # vim: filetype=yaml
