@@ -15,10 +15,4 @@
   - name: Some thing that might produce interesting output
     shell: iptables -L; ip6tables -L
 
-- hosts: localhost
-  gather_facts: false
-  connection: local
-  roles:
-  - submit_result
-
 # vim: filetype=yaml
