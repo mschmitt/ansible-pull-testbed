@@ -3,10 +3,17 @@
   gather_facts: true
   connection: local
   tasks:
-  - name: Run local.sh
-    register: result
-    script: local.sh
-    when: now() < ("2025-12-31 23:59:59" | to_datetime())
+  - name: A few non-invasive apt actions
+    apt:
+      name:
+      - bash
+      - openssl
+  - name: Some other random thing, but it will fail
+    systemd_service:
+      name: dummy.service
+      enabled: false
+  - name: Some thing that might produce interesting output
+    shell: iptables -L; ip6tables -L
 
 - hosts: localhost
   gather_facts: false
