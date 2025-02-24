@@ -8,10 +8,6 @@
       name:
       - bash
       - openssl
-  - name: Some other random thing, but it will fail
-    systemd_service:
-      name: dummy.service
-      enabled: false
   - name: Some thing that might produce interesting output
     shell: iptables -L; ip6tables -L
 
