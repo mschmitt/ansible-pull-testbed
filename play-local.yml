@@ -19,6 +19,6 @@
     rescue:
     - name: Mark play as failed if any task fails
       set_fact:
-        ansible-pull-failed: true
+        ansible_pull_failed: true
 
 # vim: filetype=yaml

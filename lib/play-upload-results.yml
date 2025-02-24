@@ -8,7 +8,7 @@
     register: git_hash
   - name: Configure upload filename
     set_fact:
-      upload_file: "commit={{ git_hash.stdout }},state={{ ansible-pull-failed | ternary('FAILURE', 'SUCCESS') }},host={{ ansible_hostname }},serial={{ ansible_product_serial }}.txt"
+      upload_file: "commit={{ git_hash.stdout }},state={{ ansible_pull_failed | ternary('FAILURE', 'SUCCESS') }},host={{ ansible_hostname }},serial={{ ansible_product_serial }}.txt"
   - name: Upload
     # This is an upload to a public Nextcloud filedrop
     uri:
