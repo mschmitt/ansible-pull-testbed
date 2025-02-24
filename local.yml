@@ -3,13 +3,15 @@
   gather_facts: true
   connection: local
   tasks:
-  - block:
-    - name: Run local.sh
-      register: result
-      script: local.sh
-    when: now() < ("2025-12-31 23:59:59" | to_datetime())
-    always:
-    - include_role:
-        name: submit_result
+  - name: Run local.sh
+    register: result
+    script: local.sh
+  when: now() < ("2025-12-31 23:59:59" | to_datetime())
+
+- hosts: localhost
+  gather_facts: false
+  connection: local
+  roles:
+  - submit_result
 
 # vim: filetype=yaml

@@ -21,7 +21,9 @@
       X-Requested-With: XMLHttpRequest
     method: PUT
     status_code: 201 # Webdav: 201 Created
-    body: "{{ result.stdout | default(result.msg) }}"
+    body:
+      logfile:
+        filename: /tmp/ansible-pull.txt
+        mime-type: text/plain
     body_format: raw
-
 # vim: filetype=yaml
