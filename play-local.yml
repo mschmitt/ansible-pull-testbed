@@ -3,22 +3,16 @@
   gather_facts: true
   connection: local
   tasks:
-  - block:
-    - name: A few non-invasive apt actions
-      apt:
-        name:
-        - bash
-        - openssl
-    - name: Some other random thing, but it will fail
-      systemd_service:
-        name: dummy.service
-        enabled: false
-    - name: Some thing that might produce interesting output
-      shell: iptables -L; ip6tables -L
-
-    rescue:
-    - name: Mark play as failed if any task fails
-      set_fact:
-        ansible_pull_failed: true
+  - name: A few non-invasive apt actions
+    apt:
+      name:
+      - bash
+      - openssl
+  - name: Some other random thing, but it will fail
+    systemd_service:
+      name: dummy.service
+      enabled: false
+  - name: Some thing that might produce interesting output
+    shell: iptables -L; ip6tables -L
 
 # vim: filetype=yaml
