@@ -13,6 +13,12 @@ git config user.signingKey 1949CE6E01C3C6A5FAD9620079F95F49DF236BA4
 - [ ] Maybe use form-multipart instead of encoding things into filename (good enough for Webdav prototype)
 - [ ] Actual deployments may want to have the submission role packaged and deployed with the ansible-pull wrapper
 
+## Obstacles
+
+- No public readable git in target environment
+- Will need to have gitlab token packaged
+- Gitlab token decay
+
 ## ansible-pull.sh
 
 ```
