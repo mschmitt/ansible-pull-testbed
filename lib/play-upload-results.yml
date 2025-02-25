@@ -21,4 +21,8 @@
       status_code: 201 # Webdav: 201 Created
       body: "{{ lookup('ansible.builtin.file','/tmp/ansible-pull.d/localhost') }}"
       body_format: raw
+  - name: Remove log file
+    file:
+      path: /tmp/ansible-pull.d/localhost
+      state: absent
 # vim: filetype=yaml
