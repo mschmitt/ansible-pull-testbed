@@ -2,7 +2,11 @@
   gather_facts: true
   connection: local
   tasks:
-  - name: "{{ item }}"
+  - name: Ensure state directory exists
+    file:
+      path: /tmp/ansible-pull.d/
+      state: directory
+  - name: Remove "{{ item }}"
     file:
       path: /tmp/ansible-pull.d/localhost
       state: absent
