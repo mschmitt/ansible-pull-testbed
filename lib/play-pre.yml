@@ -18,6 +18,6 @@
     register: git_hash
   - name: Save git commit id
     copy:
-      content: git_hash.stdout
+      content: "{{ git_hash.stdout }}"
       dest: /tmp/ansible-pull.d/commitid
 # vim: filetype=yaml
