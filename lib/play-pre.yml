@@ -1,0 +1,19 @@
+- hosts: localhost
+  gather_facts: true
+  connection: local
+  tasks:
+  - name: "{{ item }}"
+    file:
+      path: /tmp/ansible-pull.d/localhost
+      state: absent
+    with_items:
+    - /tmp/ansible-pull.d/localhost
+    - /tmp/ansible-pull.d/commitid
+  - name: Find current git commit id
+    shell: git rev-parse HEAD
+    register: git_hash
+  - name: Save git commit id
+    copy:
+      content: git_hash.stdout
+      dest: /tmp/ansible-pull.d/commitid
+# vim: filetype=yaml
